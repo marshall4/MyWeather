@@ -22,3 +22,10 @@ jobs:
 
       - name: Run external API contract tests
         run: ./gradlew :app:testDebugUnitTest --tests "*.ExternalApiContractTest" --console=plain
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: contract-test-report
+          path: app/build/reports/tests/testDebugUnitTest/
